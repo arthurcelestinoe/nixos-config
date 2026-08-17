@@ -45,6 +45,11 @@
           ];
           postPatch = ''
             patchShebangs cursors
+          
+            substituteInPlace icons/src/places/scalable/links.txt \
+              --replace-fail \
+                "start-here-kde.svg ./start-here-kde-plasma.svg" \
+                "../../apps/scalable/start-here-kde.svg ./start-here-kde-plasma.svg"
           '';
 
           buildInputs = [
