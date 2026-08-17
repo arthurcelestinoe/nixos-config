@@ -46,12 +46,12 @@
 
           buildInputs = [
             final.libepoxy
-            final.kdePackages.colorscheme
-            final.kdePackages.config
+            final.kdePackages.kcolorscheme
+            final.kdePackages.kconfig
             final.kdePackages.frameworkintegration
-            final.kdePackages.guiaddons
-            final.kdePackages.i18n
-            final.kdePackages.iconthemes
+            final.kdePackages.kguiaddons
+            final.kdePackages.ki18n
+            final.kdePackages.kiconthemes
             final.kdePackages.kcmutils
             final.kdePackages.kcoreaddons
             final.kdePackages.kdecoration
@@ -62,7 +62,7 @@
             final.kdePackages.qt5compat
             final.kdePackages.qtbase
             final.kdePackages.qtdeclarative
-            final.kdePackages.windowsystem
+            final.kdePackages.kwindowsystem
           ];
 
           cmakeFlags = [ "-DBUILD_TESTING=OFF" ];
