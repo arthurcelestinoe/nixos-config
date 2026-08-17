@@ -163,13 +163,15 @@ in
     flatpak.enable = true;
     power-profiles-daemon.enable = true;
     smartd.enable = true;
-    xdg.portal.enable = true;
 
     printing = {
       enable = true;
       drivers = [ pkgs.epson-escpr2 ];
     };
   };
+
+
+  xdg.portal.enable = true;
 
   security = {
     rtkit.enable = true;
