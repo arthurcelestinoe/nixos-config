@@ -202,6 +202,7 @@ in
 
   environment.systemPackages = with pkgs; [
     firefox
+    freedownloadmanager
     nano
     fastfetch
 
@@ -215,6 +216,12 @@ in
     kdePackages.elisa
     kdePackages.dragon
     epsonscan2
+  ];
+
+  # O FDM e seu host de integração com navegadores usam caminhos absolutos
+  # sob /opt no pacote oficial. O link é recriado declarativamente a cada boot.
+  systemd.tmpfiles.rules = [
+    "L+ /opt/freedownloadmanager - - - - ${pkgs.freedownloadmanager}/opt/freedownloadmanager"
   ];
 
   fonts.packages = with pkgs; [
