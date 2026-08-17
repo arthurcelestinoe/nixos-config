@@ -205,6 +205,7 @@ in
     freedownloadmanager
     nano
     fastfetch
+    ayugram-desktop
 
     kdePackages.dolphin
     kdePackages.ark
