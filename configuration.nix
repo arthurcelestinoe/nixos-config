@@ -160,7 +160,6 @@ in
       wireplumber.enable = true;
     };
 
-    flatpak.enable = true;
     power-profiles-daemon.enable = true;
     smartd.enable = true;
 
@@ -169,9 +168,6 @@ in
       drivers = [ pkgs.epson-escpr2 ];
     };
   };
-
-
-  xdg.portal.enable = true;
 
   security = {
     rtkit.enable = true;
@@ -239,6 +235,8 @@ in
       boot.loader.grub.configurationName = "Plasma";
       environment.sessionVariables = mkXdgSession "plasma";
 
+      services.flatpak.enable = true;
+
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
@@ -251,6 +249,8 @@ in
     hyprland.configuration = {
       system.nixos.tags = [ "hyprland" "dms" ];
       boot.loader.grub.configurationName = "Hyprland + DMS";
+
+      services.flatpak.enable = true;
 
       environment = {
         sessionVariables = (mkXdgSession "hyprland") // {
