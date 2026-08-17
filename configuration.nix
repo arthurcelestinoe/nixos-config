@@ -55,7 +55,7 @@ in
   system.autoUpgrade = {
     enable = true;
     flake = "github:arthurcelestinoe/nixos-config#nixos";
-    dates = "12:00";
+    dates = "19:00";
     randomizedDelaySec = "15min";
     operation = "boot";
     allowReboot = false;
