@@ -209,7 +209,6 @@ in
     kdePackages.ark
     kdePackages.konsole
     kdePackages.kate
-    kdePackages.kwrite
     kdePackages.gwenview
     kdePackages.spectacle
     kdePackages.okular
