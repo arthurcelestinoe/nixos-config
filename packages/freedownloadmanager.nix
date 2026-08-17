@@ -101,7 +101,9 @@ stdenv.mkDerivation {
       "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqlibase.so" \
       "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqlmimer.so" \
       "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqlmysql.so" \
-      "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqloci.so"
+      "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqloci.so"  \
+      "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqlodbc.so" \
+      "$out/opt/freedownloadmanager/plugins/sqldrivers/libqsqlpsql.so"
 
     install -Dm644 usr/share/applications/freedownloadmanager.desktop \
       "$out/share/applications/freedownloadmanager.desktop"
