@@ -83,13 +83,17 @@
           };
         };
       };
+
+      localPackagesOverlay = final: _prev: {
+        freedownloadmanager = final.callPackage ./packages/freedownloadmanager.nix { };
+      };
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
 
         modules = [
-          { nixpkgs.overlays = [ vinylOverlay ]; }
+          { nixpkgs.overlays = [ vinylOverlay localPackagesOverlay ]; }
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
