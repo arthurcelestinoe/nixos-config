@@ -43,6 +43,9 @@
             final.unzip
             final.xorg.xcursorgen
           ];
+          postPatch = ''
+            patchShebangs cursors
+          '';
 
           buildInputs = [
             final.libepoxy
