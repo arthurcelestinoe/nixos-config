@@ -1,0 +1,43 @@
+name: Atualizar flake.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 11h30 em America/Sao_Paulo (UTC-3), antes da atualização local das 12h.
+    - cron: "30 14 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-flake-lock
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter o repositório
+        uses: actions/checkout@v6
+
+      - name: Instalar Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+
+      - name: Atualizar as entradas
+        run: nix flake update
+
+      - name: Enviar o novo lockfile
+        shell: bash
+        run: |
+          if git diff --quiet -- flake.lock; then
+            echo "flake.lock já está atualizado."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add flake.lock
+          git commit -m "chore: atualizar flake.lock"
+          git push
