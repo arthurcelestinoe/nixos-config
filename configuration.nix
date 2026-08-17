@@ -165,13 +165,6 @@ in
     smartd.enable = true;
     xdg.portal.enable = true;
 
-  security = {
-    rtkit.enable = true;
-    sudo.wheelNeedsPassword = true;
-    audit.enable = true;
-    auditd.enable = true;
-  };
-
     printing = {
       enable = true;
       drivers = [ pkgs.epson-escpr2 ];
