@@ -92,15 +92,17 @@ in
         useOSProber = false;
         configurationLimit = 10;
         default = 2;
-      
+
         extraEntries = ''
-          menuentry "BigLinux"  {
+          menuentry "BigLinux" {
             insmod part_gpt
             insmod fat
             insmod chain
             search --no-floppy --fs-uuid --set=biglinux CCFC-9948
             chainloader ($biglinux)/EFI/BigLinux/grubx64.efi
           }
+        '';
+      };
     };
 
     plymouth = {
@@ -108,7 +110,6 @@ in
       theme = "breeze";
       themePackages = [ pkgs.kdePackages.breeze-plymouth ];
     };
-  };
 
   hardware = {
     enableRedistributableFirmware = true;
@@ -173,8 +174,7 @@ in
 
     printing = {
       enable = true;
-      - drivers = [ pkgs.epson-escpr2 ];
-      + drivers = [ pkgs.epson-202101w ];
+      drivers = [ pkgs.epson-202101w ];
     };
   };
 
