@@ -284,6 +284,7 @@ in
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
+        settings.General.Numlock = "on";
         theme = "${pkgs.elegant-sddm}/share/sddm/themes/Elegant";
         extraPackages = [
           pkgs.kdePackages.qt5compat
