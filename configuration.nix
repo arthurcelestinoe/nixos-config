@@ -91,7 +91,7 @@ in
         efiInstallAsRemovable = true;
         useOSProber = true;
         configurationLimit = 10;
-        default = "Plasma";
+        default = 2;
       };
     };
 
