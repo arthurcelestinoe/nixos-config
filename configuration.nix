@@ -84,15 +84,23 @@ in
         efiSysMountPoint = efiMountPoint;
       };
 
-      grub = {
+      boot.loader.grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
         efiInstallAsRemovable = true;
-        useOSProber = true;
+        useOSProber = false;
         configurationLimit = 10;
         default = 2;
-      };
+      
+        extraEntries = ''
+          menuentry "BigLinux"  {
+            insmod part_gpt
+            insmod fat
+            insmod chain
+            search --no-floppy --fs-uuid --set=biglinux CCFC-9948
+            chainloader ($biglinux)/EFI/BigLinux/grubx64.efi
+          }
     };
 
     plymouth = {
