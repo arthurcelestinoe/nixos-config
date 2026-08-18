@@ -30,29 +30,6 @@ jobs:
       - name: Atualizar as entradas
         run: nix flake update
 
-      - name: Criar hardware temporário para validação
-        shell: bash
-        run: |
-          cat > hardware-configuration.nix <<'EOF'
-          { ... }:
-          {
-            fileSystems."/" = {
-              device = "/dev/disk/by-label/nixos";
-              fsType = "ext4";
-            };
-
-            fileSystems."/boot" = {
-              device = "/dev/disk/by-label/EFI";
-              fsType = "vfat";
-            };
-
-            swapDevices = [ ];
-          }
-          EOF
-
-          # Flakes Git ignoram arquivos não rastreados.
-          git add hardware-configuration.nix
-
       - name: Avaliar o flake
         run: nix flake check --no-build --show-trace
 
@@ -63,11 +40,6 @@ jobs:
             --no-link \
             --print-build-logs
 
-      - name: Remover hardware temporário
-        shell: bash
-        run: |
-          git reset -- hardware-configuration.nix
-          rm hardware-configuration.nix
 
       - name: Enviar o novo lockfile
         shell: bash
