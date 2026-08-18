@@ -165,7 +165,8 @@ in
 
     printing = {
       enable = true;
-      drivers = [ pkgs.epson-escpr2 ];
+      - drivers = [ pkgs.epson-escpr2 ];
+      + drivers = [ pkgs.epson-202101w ];
     };
   };
 
