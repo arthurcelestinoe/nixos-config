@@ -84,7 +84,7 @@ in
         efiSysMountPoint = efiMountPoint;
       };
 
-      boot.loader.grub = {
+      grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
