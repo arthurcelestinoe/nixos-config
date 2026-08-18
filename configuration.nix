@@ -110,6 +110,7 @@ in
       theme = "breeze";
       themePackages = [ pkgs.kdePackages.breeze-plymouth ];
     };
+  };
 
   hardware = {
     enableRedistributableFirmware = true;
