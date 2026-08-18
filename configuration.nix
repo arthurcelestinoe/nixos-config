@@ -272,13 +272,22 @@ in
       environment = {
         sessionVariables = (mkXdgSession "hyprland") // {
           QT_QPA_PLATFORMTHEME = "qt6ct";
+          TERMINAL = "kitty";
         };
-        systemPackages = [ pkgs.kdePackages.qt6ct ];
+        systemPackages = [ 
+          pkgs.kdePackages.qt6ct 
+          pkgs.kitty
+          pkgs.kdePackages.breeze
+        ];
       };
 
       services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
+        theme = "${pkgs.elegant-sddm}/share/sddm/themes/Elegant";
+        extraPackages = [
+          pkgs.kdePackages.qt5compat
+        ];
       };
 
       programs.hyprland = {
