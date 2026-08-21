@@ -96,7 +96,7 @@ in
         extraEntries = ''
           menuentry "BigLinux" {
             insmod part_gpt
-            insmod ext4
+            insmod ext2
             search --no-floppy --fs-uuid --set=bigroot 1f41f4b0-a4ec-4d7a-8092-aa221f6eece7
             set prefix=($bigroot)/boot/grub
             configfile $prefix/grub.cfg
