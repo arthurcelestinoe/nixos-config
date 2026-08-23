@@ -199,7 +199,6 @@ in
 
     kdePackages.dolphin
     kdePackages.ark
-    kdePackages.konsole
     kdePackages.kate
     kdePackages.gwenview
     kdePackages.spectacle
