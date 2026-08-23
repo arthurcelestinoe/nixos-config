@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ashyterm = {
+      url = "github:big-comm/ashyterm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # O Vinyl ainda não faz parte do Nixpkgs. O código-fonte é fixado no
     # flake.lock e compilado pelo overlay abaixo.
     vinyl-theme = {
