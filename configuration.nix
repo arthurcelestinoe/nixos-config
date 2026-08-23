@@ -50,17 +50,6 @@ in
     };
   };
 
-  # A Action atualiza flake.lock no GitHub antes do meio-dia. A máquina apenas
-  # prepara a nova geração; nada é ativado até o próximo boot.
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github:arthurcelestinoe/nixos-config#nixos";
-    dates = "19:00";
-    randomizedDelaySec = "15min";
-    operation = "boot";
-    allowReboot = false;
-    flags = [ "--refresh" ];
-  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
