@@ -5,6 +5,16 @@ let
   isHyprland = lib.elem "hyprland" osConfig.system.nixos.tags;
   isPlasma = lib.elem "plasma" osConfig.system.nixos.tags;
   profile = if isHyprland then "hyprland" else if isPlasma then "plasma" else "base";
+  ashyTerminal =
+      inputs.ashyterm.packages.${pkgs.stdenv.hostPlatform.system}.ashyterm-all.overrideAttrs
+        (oldAttrs: {
+          postInstall = (oldAttrs.postInstall or "") + ''
+            substituteInPlace $out/bin/ashyterm \
+              --replace-fail \
+                'execute_ashy="python3 __init__.py"' \
+                'execute_ashy="python3 -m ashyterm"'
+          '';
+        });
 in {
   # Importar um módulo apenas define opções durante a avaliação. O DMS só entra
   # na closure e cria serviços quando a especialização Hyprland está ativa.
@@ -72,6 +82,6 @@ in {
     onlyoffice-desktopeditors
     spotify
     vscode
-    inputs.ashyterm.packages.${pkgs.stdenv.hostPlatform.system}.ashyterm-all
+    ashyTerminal
   ];
 }
