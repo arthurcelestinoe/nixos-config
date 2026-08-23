@@ -72,5 +72,6 @@ in {
     onlyoffice-desktopeditors
     spotify
     vscode
+    inputs.ashyterm.packages.${pkgs.stdenv.hostPlatform.system}.ashyterm-all
   ];
 }
