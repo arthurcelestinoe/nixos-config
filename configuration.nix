@@ -55,11 +55,8 @@ in
     kernelPackages = pkgs.linuxPackages_latest;
 
     kernelParams = [
-      "lsm=landlock,lockdown,yama,integrity,bpf"
       "lockdown=integrity"
-      "audit=1"
       "quiet"
-      "splash"
       "udev.log_level=3"
       "rd.udev.log_level=3"
     ];
@@ -160,6 +157,7 @@ in
   };
 
   security = {
+    lsm = [ "lockdown" "integrity" ];
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true;
     audit.enable = true;
