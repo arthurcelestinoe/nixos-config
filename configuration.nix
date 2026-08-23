@@ -67,7 +67,7 @@ in
 
     kernelParams = [
       "lsm=landlock,lockdown,yama,integrity,bpf"
-      "lockdown=confidentiality"
+      "lockdown=integrity"
       "audit=1"
       "quiet"
       "splash"
@@ -93,15 +93,6 @@ in
         configurationLimit = 10;
         default = 2;
 
-        extraEntries = ''
-          menuentry "BigLinux" {
-            insmod part_gpt
-            insmod ext2
-            search --no-floppy --fs-uuid --set=bigroot 1f41f4b0-a4ec-4d7a-8092-aa221f6eece7
-            set prefix=($bigroot)/boot/grub
-            configfile $prefix/grub.cfg
-          }
-      '';
       };
     };
 
