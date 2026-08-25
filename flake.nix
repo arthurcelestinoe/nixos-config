@@ -46,7 +46,7 @@
             final.python3Packages.cairosvg
             final.python3Packages.lxml
             final.unzip
-            final.xorg.xcursorgen
+            final.xcursorgen
           ];
           postPatch = ''
             patchShebangs cursors
