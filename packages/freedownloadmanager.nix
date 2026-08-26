@@ -69,7 +69,7 @@ stdenv.mkDerivation {
     pango
     stdenv.cc.cc.lib
     wayland
-    libx11
+    xorg.libX11
     libxcb
     xcbutil
     xcbutilcursor
