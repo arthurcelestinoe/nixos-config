@@ -194,6 +194,7 @@ in
     nano
     fastfetch
     ayugram-desktop
+    antigravity
 
     kdePackages.dolphin
     kdePackages.ark
