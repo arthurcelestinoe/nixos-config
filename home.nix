@@ -48,7 +48,8 @@ in {
 
     git = {
       enable = true;
-      # user.name e user.email serão definidos posteriormente.
+      userName = "TheBlackCoder";
+      userEmail = "320399680+theblackcoderbr@users.noreply.github.com";
     };
 
     fish = {
