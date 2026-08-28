@@ -77,6 +77,10 @@ in {
     };
   };
 
+  services.ssh-agent = {
+    enable = true;
+  };
+
   # Aplicativos pessoais comuns às especializações Plasma e Hyprland.
   home.packages = with pkgs; [
     onlyoffice-desktopeditors
