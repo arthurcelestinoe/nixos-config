@@ -4,16 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ashyterm = {
       url = "github:big-comm/ashyterm";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +17,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, vinyl-theme, ... }:
+  outputs = inputs@{ nixpkgs, vinyl-theme, ... }:
     let
       system = "x86_64-linux";
 
@@ -91,25 +81,24 @@
 
       localPackagesOverlay = final: _prev: {
         freedownloadmanager = final.callPackage ./packages/freedownloadmanager.nix { };
+        ashy-terminal =
+          inputs.ashyterm.packages.${final.stdenv.hostPlatform.system}.ashyterm-all.overrideAttrs
+            (oldAttrs: {
+              postInstall = (oldAttrs.postInstall or "") + ''
+                substituteInPlace $out/bin/ashyterm \
+                  --replace-fail \
+                    'execute_ashy="python3 __init__.py"' \
+                    'execute_ashy="python3 -m ashyterm"'
+              '';
+            });
       };
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
 
         modules = [
           { nixpkgs.overlays = [ vinylOverlay localPackagesOverlay ]; }
           ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "hm-backup";
-              extraSpecialArgs = { inherit inputs; };
-              users.arthur = import ./home.nix;
-            };
-          }
         ];
       };
     };
