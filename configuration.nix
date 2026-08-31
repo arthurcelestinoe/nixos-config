@@ -11,15 +11,6 @@ let
     (builtins.attrNames config.fileSystems);
   efiMountPoint = if efiMountPoints == [ ] then null else builtins.head efiMountPoints;
 
-  # Cada ambiente gráfico recebe árvores XDG próprias. Isso também impede que
-  # environment.d, kdeglobals, qt6ct e configurações do DMS sejam lidos pela
-  # outra sessão.
-  mkXdgSession = profile: {
-    XDG_CONFIG_HOME = "/home/arthur/.config/${profile}";
-    XDG_CACHE_HOME = "/home/arthur/.cache/${profile}";
-    XDG_DATA_HOME = "/home/arthur/.local/share/${profile}";
-    XDG_STATE_HOME = "/home/arthur/.local/state/${profile}";
-  };
 in
 {
   imports = [ ./hardware-configuration.nix ];
@@ -77,7 +68,7 @@ in
         efiInstallAsRemovable = true;
         useOSProber = false;
         configurationLimit = 10;
-        default = 2;
+        default = 0;
 
       };
     };
@@ -149,6 +140,14 @@ in
 
     power-profiles-daemon.enable = true;
     smartd.enable = true;
+    flatpak.enable = true;
+
+    displayManager.ly = {
+      enable = true;
+      settings.numlock = true;
+    };
+
+    desktopManager.plasma6.enable = true;
 
     printing = {
       enable = true;
@@ -170,8 +169,23 @@ in
       binfmt = true;
     };
 
-    fish.enable = true;
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set --global fish_greeting
+      '';
+    };
+
+    git = {
+      enable = true;
+      config.user = {
+        name = "TheBlackCoder";
+        email = "320399680+theblackcoderbr@users.noreply.github.com";
+      };
+    };
+
     kdeconnect.enable = true;
+    ssh.startAgent = true;
   };
 
   users = {
@@ -195,6 +209,11 @@ in
     fastfetch
     ayugram-desktop
     antigravity
+    onlyoffice-desktopeditors
+    spotify
+    vscode
+    ashy-terminal
+    vinyl-theme
 
     kdePackages.dolphin
     kdePackages.ark
@@ -206,6 +225,15 @@ in
     kdePackages.dragon
     epsonscan2
   ];
+
+  # Mantém a árvore já usada pelo Plasma. A migração para os caminhos XDG
+  # padrão pode ser feita separadamente, sem fazer a sessão parecer zerada.
+  environment.sessionVariables = {
+    XDG_CONFIG_HOME = "/home/arthur/.config/plasma";
+    XDG_CACHE_HOME = "/home/arthur/.cache/plasma";
+    XDG_DATA_HOME = "/home/arthur/.local/share/plasma";
+    XDG_STATE_HOME = "/home/arthur/.local/state/plasma";
+  };
 
   # O FDM e seu host de integração com navegadores usam caminhos absolutos
   # sob /opt no pacote oficial. O link é recriado declarativamente a cada boot.
@@ -219,73 +247,6 @@ in
     adwaita-fonts
     unifont
   ];
-
-  # A configuração pai contém apenas a base comum. Cada ambiente gráfico é
-  # construído como uma closure própria e aparece como especialização no GRUB.
-  # Assim, portais, agentes e serviços de sessão não vazam entre os ambientes.
-  specialisation = {
-    plasma.configuration = {
-      system.nixos.tags = [ "plasma" ];
-      boot.loader.grub.configurationName = "Plasma";
-      environment.sessionVariables = mkXdgSession "plasma";
-
-      services.flatpak.enable = true;
-
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-        settings.General.Numlock = "on";
-      };
-      services.desktopManager.plasma6.enable = true;
-
-      environment.systemPackages = [ pkgs.vinyl-theme ];
-    };
-
-    hyprland.configuration = {
-      system.nixos.tags = [ "hyprland" "dms" ];
-      boot.loader.grub.configurationName = "Hyprland + DMS";
-
-      services.flatpak.enable = true;
-
-      environment = {
-        sessionVariables = (mkXdgSession "hyprland") // {
-          QT_QPA_PLATFORMTHEME = "qt6ct";
-          TERMINAL = "kitty";
-        };
-        systemPackages = [ 
-          pkgs.kdePackages.qt6ct 
-          pkgs.kitty
-          pkgs.kdePackages.breeze
-        ];
-      };
-
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-        settings.General.Numlock = "on";
-        theme = "${pkgs.elegant-sddm}/share/sddm/themes/Elegant";
-        extraPackages = [
-          pkgs.kdePackages.qt5compat
-        ];
-      };
-
-      programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-      };
-
-      # O portal do Hyprland continua responsável pela integração com o
-      # compositor. Somente FileChooser é direcionado ao seletor do COSMIC.
-      xdg.portal = {
-        enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-cosmic ];
-        config.hyprland = {
-          default = [ "hyprland" "cosmic" ];
-          "org.freedesktop.impl.portal.FileChooser" = [ "cosmic" ];
-        };
-      };
-    };
-  };
 
   # Marcador de compatibilidade de uma instalação nova no ciclo 26.11.
   # Não alterar nas atualizações normais do nixos-unstable.
