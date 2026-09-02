@@ -217,6 +217,7 @@ in
     kdePackages.okular
     kdePackages.elisa
     kdePackages.dragon
+    kdePackages.kcalc
     epsonscan2
   ];
 
