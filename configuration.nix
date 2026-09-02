@@ -47,7 +47,6 @@ in
 
     kernelParams = [
       "lockdown=integrity"
-      "quiet"
       "udev.log_level=3"
       "rd.udev.log_level=3"
     ];
@@ -73,11 +72,6 @@ in
       };
     };
 
-    plymouth = {
-      enable = true;
-      theme = "breeze";
-      themePackages = [ pkgs.kdePackages.breeze-plymouth ];
-    };
   };
 
   hardware = {
