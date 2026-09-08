@@ -202,12 +202,13 @@ in
     nano
     fastfetch
     ayugram-desktop
-    antigravity
+    antigravity-ide
     onlyoffice-desktopeditors
     spotify
     vscode
     ashy-terminal
     vinyl-theme
+    vim
 
     kdePackages.dolphin
     kdePackages.ark
