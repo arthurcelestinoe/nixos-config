@@ -209,6 +209,7 @@ in
     ashy-terminal
     vinyl-theme
     vim
+    btop
 
     kdePackages.dolphin
     kdePackages.ark
