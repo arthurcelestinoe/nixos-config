@@ -212,6 +212,7 @@ in
     btop
     gcc
     gdb
+    chatgpt
 
     kdePackages.dolphin
     kdePackages.ark
