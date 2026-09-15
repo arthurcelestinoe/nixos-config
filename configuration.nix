@@ -210,6 +210,8 @@ in
     vinyl-theme
     vim
     btop
+    gcc
+    gdb
 
     kdePackages.dolphin
     kdePackages.ark
