@@ -212,6 +212,7 @@ in
     btop
     gcc
     gdb
+    gutenprint
     
 
     kdePackages.dolphin
