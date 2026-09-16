@@ -45,6 +45,9 @@ in
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
 
+    blacklistedKernelModules = lib.mkForce [ ];
+    kernelModules = [ "usblp" ];
+
     kernelParams = [
       "lockdown=integrity"
       "udev.log_level=3"
