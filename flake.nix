@@ -1,5 +1,5 @@
 {
-  description = "Configuração NixOS do desktop de Arthur";
+  description = "Configuração NixOS de Arthur";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -17,89 +17,33 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, vinyl-theme, ... }:
+  outputs = inputs@{ nixpkgs, vinyl-theme, ashyterm, ... }:
     let
       system = "x86_64-linux";
-
-      vinylOverlay = final: _prev: {
-        vinyl-theme = final.stdenv.mkDerivation {
-          pname = "vinyl-theme";
-          version = "unstable";
-          src = vinyl-theme;
-
-          nativeBuildInputs = [
-            final.cmake
-            final.pkg-config
-            final.kdePackages.extra-cmake-modules
-            final.kdePackages.wrapQtAppsHook
-            final.kdePackages.qttools
-            final.python3Packages.cairosvg
-            final.python3Packages.lxml
-            final.unzip
-            final.xcursorgen
-          ];
-          postPatch = ''
-            patchShebangs cursors
-          
-            substituteInPlace icons/src/places/scalable/links.txt \
-              --replace-fail \
-                "start-here-kde.svg ./start-here-kde-plasma.svg" \
-                "../../apps/scalable/start-here-kde.svg ./start-here-kde-plasma.svg"
-          '';
-
-          buildInputs = [
-            final.libepoxy
-            final.kdePackages.kcolorscheme
-            final.kdePackages.kconfig
-            final.kdePackages.frameworkintegration
-            final.kdePackages.kguiaddons
-            final.kdePackages.ki18n
-            final.kdePackages.kiconthemes
-            final.kdePackages.kcmutils
-            final.kdePackages.kcoreaddons
-            final.kdePackages.kdecoration
-            final.kdePackages.kirigami
-            final.kdePackages.kwayland
-            final.kdePackages.kwin
-            final.kdePackages.libplasma
-            final.kdePackages.qt5compat
-            final.kdePackages.qtbase
-            final.kdePackages.qtdeclarative
-            final.kdePackages.kwindowsystem
-          ];
-
-          cmakeFlags = [ "-DBUILD_TESTING=OFF" ];
-
-          meta = {
-            description = "Tema Vinyl para KDE Plasma 6";
-            homepage = "https://github.com/ekaaty/vinyl-theme";
-            license = final.lib.licenses.gpl3Plus;
-            platforms = final.lib.platforms.linux;
-          };
-        };
-      };
-
-      localPackagesOverlay = final: _prev: {
-        freedownloadmanager = final.callPackage ./packages/freedownloadmanager.nix { };
-        ashy-terminal =
-          inputs.ashyterm.packages.${final.stdenv.hostPlatform.system}.ashyterm-all.overrideAttrs
-            (oldAttrs: {
-              postInstall = (oldAttrs.postInstall or "") + ''
-                substituteInPlace $out/bin/ashyterm \
-                  --replace-fail \
-                    'execute_ashy="python3 __init__.py"' \
-                    'execute_ashy="python3 -m ashyterm"'
-              '';
-            });
-      };
+      lib = nixpkgs.lib;
+      overlays = [
+        (import ./overlays/default.nix { inherit ashyterm; })
+        (import ./overlays/vinyl.nix { inherit vinyl-theme; })
+      ];
+      notebookHardwareFile = ./hosts/notebook/hardware-configuration.nix;
+      notebookHardwareReady = !(lib.hasInfix "Substitua este arquivo" (builtins.readFile notebookHardwareFile));
     in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-
-        modules = [
-          { nixpkgs.overlays = [ vinylOverlay localPackagesOverlay ]; }
-          ./configuration.nix
-        ];
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            { nixpkgs.overlays = overlays; }
+            ./hosts/desktop
+          ];
+        };
+      } // lib.optionalAttrs notebookHardwareReady {
+        notebook = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            { nixpkgs.overlays = overlays; }
+            ./hosts/notebook
+          ];
+        };
       };
     };
 }
