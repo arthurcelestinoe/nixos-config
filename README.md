@@ -77,10 +77,6 @@ que ela seja FAT e esteja montada em `/boot` ou em um caminho abaixo dele.
 O menu preserva no máximo dez gerações. O Plasma é o único ambiente gráfico e
 o Ly inicia sua sessão diretamente, sem uma especialização intermediária.
 
-O Plymouth usa o tema Breeze e oculta os logs durante a inicialização. Para
-diagnosticar um boot, edite temporariamente a entrada do GRUB e remova `quiet`
-e `splash` da linha do kernel.
-
 ## Atualizações
 
 A Action `.github/workflows/update-flake-lock.yml` atualiza, avalia e constrói
