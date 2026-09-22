@@ -42,7 +42,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb";
-    hash = "sha256-rsxMB5RoVmjoSWij1e8kd8Ux0Pl2jSDzzFNx2bO59Wc=";
+    hash = "sha256-3xaIWR6xG/TZBHs8rkS2bXzZd6dlDXmkS5l6LtBc9bA=";
   };
 
   nativeBuildInputs = [
