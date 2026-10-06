@@ -115,6 +115,7 @@
     kdePackages.elisa
     kdePackages.dragon
     kdePackages.kcalc
+    kdePackages.partitionmanager
     epsonscan2
   ];
 
