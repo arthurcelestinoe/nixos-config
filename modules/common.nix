@@ -78,7 +78,7 @@
     kdeconnect.enable = true;
     ssh.startAgent = true;
 
-    programs.nix-ld.enable = true;
+    nix-ld.enable = true;
   };
 
   users = {
