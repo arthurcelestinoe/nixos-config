@@ -119,6 +119,19 @@
     epsonscan2
   ];
 
+environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    akregator
+    akonadiconsole
+    akonadi-import-wizard
+    kaddressbook
+    kalarm
+    kmail
+    kmail-account-wizard
+    kontact
+    korganizer
+    kdepim-runtime
+  ];
+
   systemd.tmpfiles.rules = [
     "L+ /opt/freedownloadmanager - - - - ${pkgs.freedownloadmanager}/opt/freedownloadmanager"
   ];
