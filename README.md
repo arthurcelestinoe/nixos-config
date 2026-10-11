@@ -77,6 +77,13 @@ que ela seja FAT e esteja montada em `/boot` ou em um caminho abaixo dele.
 O menu preserva no máximo dez gerações. O Plasma é o único ambiente gráfico e
 o Ly inicia sua sessão diretamente, sem uma especialização intermediária.
 
+No notebook, o Plymouth usa o tema BGRT e o initrd com systemd para solicitar
+a senha do volume LUKS `cryptroot` durante a tela de boot. A definição do volume
+criptografado permanece em `hosts/notebook/hardware-configuration.nix`.
+O BGRT aproveita o logo do fabricante quando o firmware o disponibiliza.
+Pressione `Esc` durante o Plymouth para alternar entre a tela gráfica e as
+mensagens de boot.
+
 ## Atualizações
 
 A Action `.github/workflows/update-flake-lock.yml` atualiza, avalia e constrói
