@@ -79,6 +79,7 @@
     ssh.startAgent = true;
 
     nix-ld.enable = true;
+    kde-pim.enable = false;
   };
 
   users = {
@@ -100,7 +101,6 @@
     nano
     fastfetch
     ayugram-desktop
-    antigravity-ide
     onlyoffice-desktopeditors
     spotify
     vscode
@@ -121,7 +121,7 @@
     epsonscan2
   ];
 
-environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
     akregator
     akonadiconsole
     akonadi-import-wizard
