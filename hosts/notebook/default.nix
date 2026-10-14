@@ -23,7 +23,20 @@ in
 
   hardware.graphics.enable32Bit = true;
   programs.steam.enable = true;
+  
+  services.keyd = {
+  enable = true;
 
+  keyboards.ideapad = {
+    ids = [ "0001:0001:09b4e68d" ];
+
+    settings = {
+      meta = {
+        ro = "menu";
+        };
+      };
+    };
+  };
   boot = {
     # O systemd no initrd integra o desbloqueio LUKS ao prompt do Plymouth.
     initrd.systemd.enable = true;
