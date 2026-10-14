@@ -31,8 +31,8 @@ in
     ids = [ "0001:0001:09b4e68d" ];
 
     settings = {
-      meta = {
-        ro = "menu";
+    meta = {
+    ro = "S-f10";
         };
       };
     };
