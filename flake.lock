@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791576500,
-        "narHash": "sha256-3diHsbFT8ekDseOS+y1L/IBV9bltZfCDYfRlen/zIAg=",
+        "lastModified": 1792205227,
+        "narHash": "sha256-NjgMI4+tNmYr1TtccC2Y//TM+UlpcbJ5xS3Tq8/ZpJM=",
         "owner": "big-comm",
         "repo": "ashyterm",
-        "rev": "56337741e4b4bebce68b826bcf3132004f0e05ec",
+        "rev": "21d28f06c4c8762b379b3544bd80d1f3e5c465d3",
         "type": "github"
       },
       "original": {
