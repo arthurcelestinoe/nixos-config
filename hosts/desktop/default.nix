@@ -40,6 +40,17 @@ in
       useOSProber = false;
       configurationLimit = 10;
       default = 0;
+
+        extraEntries = ''
+          menuentry "Artix (OpenRC)" {
+            insmod part_gpt
+            insmod part_msdos
+            insmod fat
+            insmod chain
+            search --no-floppy --fs-uuid --set=artix 4FF1-FCF1
+            chainloader ($artix)/EFI/BOOT/BOOTX64.EFI
+          }
+        '';
     };
   };
 
