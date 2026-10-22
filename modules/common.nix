@@ -25,6 +25,20 @@
     initrd.verbose = false;
   };
 
+  system.systemBuilderCommands =
+    let
+      kernelPackages = config.boot.kernelPackages;
+      target = kernelPackages.kernel.target;
+
+      verifiedKernel = kernelPackages.rebuildImage {
+        inherit target;
+        inherit (config.system) modulesTree;
+      };
+    in
+    lib.mkAfter ''
+      ln -sf -- ${lib.escapeShellArg "${verifiedKernel}/${target}"} $out/kernel
+    '';
+
   hardware = {
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;
