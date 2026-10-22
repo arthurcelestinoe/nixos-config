@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    ashyterm = {
-      url = "github:big-comm/ashyterm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # O Vinyl ainda não faz parte do Nixpkgs. O código-fonte é fixado no
     # flake.lock e compilado pelo overlay abaixo.
     vinyl-theme = {
@@ -17,12 +12,12 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, vinyl-theme, ashyterm, ... }:
+  outputs = inputs@{ nixpkgs, vinyl-theme, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       overlays = [
-        (import ./overlays/default.nix { inherit ashyterm; })
+        (import ./overlays/default.nix)
         (import ./overlays/vinyl.nix { inherit vinyl-theme; })
       ];
       notebookHardwareFile = ./hosts/notebook/hardware-configuration.nix;

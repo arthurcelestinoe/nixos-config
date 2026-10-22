@@ -38,13 +38,7 @@ in
     };
   };
   boot = {
-    # O systemd no initrd integra o desbloqueio LUKS ao prompt do Plymouth.
     initrd.systemd.enable = true;
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-    };
-    kernelParams = [ "quiet" "rd.systemd.show_status=auto" ];
   };
 
   assertions = [

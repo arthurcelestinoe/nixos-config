@@ -118,7 +118,6 @@
     onlyoffice-desktopeditors
     spotify
     vscode
-    ashy-terminal
     vinyl-theme
     vim
     btop
