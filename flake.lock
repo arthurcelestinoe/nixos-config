@@ -1,6 +1,41 @@
 {
   "nodes": {
+    "harmony-music": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1792802088,
+        "narHash": "sha256-snTPOGWheo9etKiAdzRENB2QXhfIeu9GcoDASvKG1PI=",
+        "owner": "theblackcoderbr",
+        "repo": "Harmony-Music",
+        "rev": "02acf020caacb26cf5de128a4e56906c83f7f42c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "theblackcoderbr",
+        "ref": "feat/nix-flake",
+        "repo": "Harmony-Music",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1792502884,
         "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
@@ -18,7 +53,8 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
+        "harmony-music": "harmony-music",
+        "nixpkgs": "nixpkgs_2",
         "vinyl-theme": "vinyl-theme"
       }
     },
