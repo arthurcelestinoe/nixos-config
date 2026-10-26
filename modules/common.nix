@@ -22,7 +22,7 @@
     kernelModules = [ "usblp" ];
     kernelParams = [ "lockdown=integrity" "udev.log_level=3" "rd.udev.log_level=3" ];
     consoleLogLevel = 3;
-    initrd.verbose = false;
+
     kernel.sysctl."kernel.sysrq" = 244;
   };
 
