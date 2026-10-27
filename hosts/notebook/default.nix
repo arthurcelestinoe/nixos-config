@@ -37,9 +37,7 @@ in
       };
     };
   };
-  boot = {
-    initrd.systemd.enable = true;
-  };
+  
 
   assertions = [
     {
