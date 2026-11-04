@@ -33,13 +33,13 @@ jobs:
       - name: Avaliar o flake
         run: nix flake check --no-build --show-trace
 
-      - name: Construir a configuração do NixOS
+      - name: Construir as configurações do desktop e notebook
         run: |
           nix build \
             .#nixosConfigurations.desktop.config.system.build.toplevel \
+            .#nixosConfigurations.notebook.config.system.build.toplevel \
             --no-link \
             --print-build-logs
-
 
       - name: Enviar o novo lockfile
         shell: bash

@@ -1,8 +1,8 @@
 # Configuração NixOS — `nixos-config`
 
 Configuração em flakes para as máquinas de Arthur, usando `nixos-unstable`, KDE
-Plasma 6 e o display manager Ly. A configuração atual do desktop fica em
-`hosts/desktop`; o esqueleto compartilhado do notebook fica em `hosts/notebook`.
+Plasma 6 e o display manager Ly. As configurações do desktop e do notebook ficam
+em `hosts/desktop` e `hosts/notebook`, respectivamente.
 
 ## Estrutura
 
@@ -27,18 +27,17 @@ Plasma 6 e o display manager Ly. A configuração atual do desktop fica em
 5. Confirme que `hosts/desktop/hardware-configuration.nix` contém a raiz, a home separada
    (se houver) e a ESP montada sob `/boot`.
 
-O arquivo do desktop está versionado porque contém os UUIDs da instalação
-atual. O arquivo do notebook é apenas um placeholder e deve ser substituído
-quando o equipamento chegar:
+Os arquivos de hardware dos dois dispositivos estão versionados e contêm os
+UUIDs das instalações atuais. Em uma reinstalação do notebook, gere o arquivo
+correspondente após montar suas partições:
 
 ```bash
 sudo nixos-generate-config --root /mnt --show-hardware-config \
   | sudo tee /mnt/etc/nixos/hosts/notebook/hardware-configuration.nix >/dev/null
 ```
 
-Depois de substituir o placeholder, a saída `.#notebook` será disponibilizada
-automaticamente pelo flake. Use sempre o nome explícito do host ao instalar ou
-reconstruir, para não selecionar o desktop por engano:
+As saídas `.#desktop` e `.#notebook` estão sempre disponíveis no flake. Use o
+nome explícito do host ao instalar ou reconstruir. Para o notebook:
 
 ```bash
 sudo nixos-install --flake .#notebook
@@ -86,9 +85,11 @@ mensagens de boot.
 
 ## Atualizações
 
-A Action `.github/workflows/update-flake-lock.yml` atualiza, avalia e constrói
-o sistema diariamente no GitHub. Na máquina, nenhuma nova geração é preparada
-ou ativada automaticamente; a aplicação das atualizações é manual.
+A Action `.github/workflows/update-flake-lock.yml` atualiza as entradas, valida
+o flake e constrói as configurações do desktop e do notebook diariamente no
+GitHub. O novo `flake.lock` só é enviado após ambas as configurações passarem.
+Na máquina, nenhuma nova geração é preparada ou ativada automaticamente; a
+aplicação das atualizações é manual.
 
 ## Epson EcoTank L3210
 

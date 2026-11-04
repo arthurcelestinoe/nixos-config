@@ -17,7 +17,6 @@
   outputs = inputs@{ nixpkgs, vinyl-theme, ... }:
     let
       system = "x86_64-linux";
-      lib = nixpkgs.lib;
       overlays = [
         (import ./overlays/default.nix)
         (import ./overlays/vinyl.nix { inherit vinyl-theme; })
@@ -27,8 +26,6 @@
           inputs.harmony-music.packages.${system}.default
         ];
       };
-      notebookHardwareFile = ./hosts/notebook/hardware-configuration.nix;
-      notebookHardwareReady = !(lib.hasInfix "Substitua este arquivo" (builtins.readFile notebookHardwareFile));
     in {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
@@ -39,7 +36,6 @@
             ./hosts/desktop
           ];
         };
-      } // lib.optionalAttrs notebookHardwareReady {
         notebook = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
