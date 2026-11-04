@@ -5,18 +5,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1792802088,
-        "narHash": "sha256-XucbUXEVFTAficszwjK7P8TMbGtQYOXWpzTkeIc4mjM=",
-        "ref": "feat/nix-flake",
-        "rev": "02acf020caacb26cf5de128a4e56906c83f7f42c",
-        "revCount": 1325,
-        "type": "git",
-        "url": "https://github.com/theblackcoderbr/Harmony-Music.git"
+        "lastModified": 1793796248,
+        "narHash": "sha256-295WtAKaImgZzlCBXs2VWfYtZw+1Mrl+2rQflD+sdT4=",
+        "owner": "NPP-exe",
+        "repo": "Harmony-Music",
+        "rev": "2dd9c6af6cafbc65e956a411449de60b8fb84d80",
+        "type": "github"
       },
       "original": {
-        "ref": "feat/nix-flake",
-        "type": "git",
-        "url": "https://github.com/theblackcoderbr/Harmony-Music.git"
+        "owner": "NPP-exe",
+        "repo": "Harmony-Music",
+        "type": "github"
       }
     },
     "nixpkgs": {

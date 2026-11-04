@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    harmony-music.url = "git+https://github.com/theblackcoderbr/Harmony-Music.git?ref=feat/nix-flake";
+    harmony-music.url = "github:NPP-exe/Harmony-Music";
 
     # O Vinyl ainda não faz parte do Nixpkgs. O código-fonte é fixado no
     # flake.lock e compilado pelo overlay abaixo.
