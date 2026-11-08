@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1794066229,
-        "narHash": "sha256-zvQ6Vf2xsmP85KJf4sHWcwVgQFvZ3heDs4fQVQxPPaE=",
+        "lastModified": 1794142039,
+        "narHash": "sha256-xq3th1YcCPRyroszvV9FZCuphPOkhPeq4ySBFhmZh7s=",
         "owner": "NPP-exe",
         "repo": "Harmony-Music",
-        "rev": "cfd3e2a5fe5516d742047a8e00686fa212cd8c87",
+        "rev": "954cf5ae96dccc1198bc268977c0098485fe2255",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1793876309,
-        "narHash": "sha256-Wojg9lIH/hDH91iDVH2/EPw8oDSpxjxhXONbU1yf4Zg=",
+        "lastModified": 1794042290,
+        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f9a75f41be3a74eab55d3a7679d34ad6cc0da977",
+        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
         "type": "github"
       },
       "original": {
