@@ -38,11 +38,11 @@
 
 stdenv.mkDerivation {
   pname = "freedownloadmanager";
-  version = "6.35.2";
+  version = "6.36.0";
 
   src = fetchurl {
     url = "https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb";
-    sha256 = "802d7e7c3fadc040c09fc5c64a3af53096b0fa34227b11431a2f553a5b7353a9";
+    sha256 = "5cb172a75d91b48b830b524efeca231579345895fcdf76d57ac6a87308bd0832";
   };
 
   nativeBuildInputs = [
