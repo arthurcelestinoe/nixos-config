@@ -20,7 +20,7 @@ in
   environment.systemPackages = with pkgs; [
     waydroid
     waydroid-helper
-  ]
+  ];
   networking.hostName = "nixos";
 
   assertions = [
