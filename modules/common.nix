@@ -133,6 +133,8 @@
     kdePackages.kcalc
     kdePackages.partitionmanager
     epsonscan2
+    chatgpt
+    codex
   ];
 
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
