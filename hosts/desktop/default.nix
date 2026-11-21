@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   efiMountPoints = lib.filter
@@ -17,7 +17,10 @@ in
     ../../modules/printing.nix
     ../../modules/security.nix
   ];
-
+  environment.systemPackages = with pkgs; [
+    waydroid
+    waydroid-helper
+  ]
   networking.hostName = "nixos";
 
   assertions = [
