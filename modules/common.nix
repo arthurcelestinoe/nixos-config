@@ -132,6 +132,7 @@
     kdePackages.dragon
     kdePackages.kcalc
     kdePackages.partitionmanager
+    kdePackages.kclock
     epsonscan2
     chatgpt
     codex
